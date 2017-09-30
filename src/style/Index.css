@@ -1,0 +1,32 @@
+.header {
+	background-color: #3498db;
+	height: 110px;
+	padding: 10px;
+	color: white;
+}
+
+.app-logo {	
+  height: 30px;
+  margin-top: 10px; 
+}
+
+.spinner {
+	height: 80px !important;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 80px !important
+}
+
+.select-box {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
