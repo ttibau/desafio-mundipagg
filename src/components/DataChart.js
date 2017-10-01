@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import '../style/DataChart.css';
-import { Grid, Col, Row} from 'react-flexbox-grid';
+import { Grid, Row} from 'react-flexbox-grid';
 
 
 export default class DataChart extends Component {

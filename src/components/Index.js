@@ -25,8 +25,8 @@ export default class Index extends Component {
 		// Faz a req de todos os repositorios na inicializacao do componente 
 		const url = "https://api.github.com/users/ttibau/repos";
 		Request.get(url)
+			.set({ "Authorization" : "token 6d9f6425ac394bd14fb6feedd47af20517be72dc" })
 			.then((data, error) => {
-
 				// Seto a dataLoad pra true, para parar de exibir o Spinner
 				this.setState({ dataLoad: true });
 
@@ -58,6 +58,7 @@ export default class Index extends Component {
 							if(error) {
 								console.log("Houve um erro!");
 							} else {
+								console.log(data);
 								this.setState({
 									contribCount: data.body.length
 								});
@@ -97,7 +98,7 @@ export default class Index extends Component {
 			case false:
 				return <Spinner name="cube-grid" className="spinner" />;
 			default:
-				return <Spinner name="cube-grid" className="spinner" />;
+				return <Spinner name="cube-grid" className="spinner" />
 		};
 	}
 
