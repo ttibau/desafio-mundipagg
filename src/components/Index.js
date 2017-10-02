@@ -4,7 +4,8 @@ import logo from '../static/logo.png'
 import Request from 'superagent';
 import Spinner from 'react-spinkit';
 import Main from './Main';
-import counterContrib from './CountContrib';
+import counterContrib from '../CountContrib';
+import isEmptyObject from '../verifyObject';
 
 
 export default class Index extends Component {
@@ -53,18 +54,18 @@ export default class Index extends Component {
 						forksCount: data.body.forks_count, 
 						starsCount: data.body.stargazers_count 
 					});
-					// Após pegar os dados do repositório, vai na url de contribs e faz um count
-					// Se houver alguma prop dentro de links, fazer um get e jogar dentro do array de contrib
+					// Após pegar os dados do repositório, vai na url de chama a funcao counterContrib passando os links
+					// Se houver alguma prop dentro de links, a função vai retornar a quantidade total de contributors, depois soma no state
 					Request.get(data.body.contributors_url)
 						.then((data, error) => {
 							if(error) {
 								console.log("Houve um erro!");
 							} else {
-								console.log(data);
-								if("next" in data.links){
-									counterContrib(data.links.next, data.links.last);
+								let objVerified = isEmptyObject(data.links);
+								if(objVerified){
+									console.log("Não contém nada");
 								} else {
-									console.log("não tem mais de 30");
+									console.log("contém sim");
 								}
 								this.setState({
 									contribCount: data.body.length

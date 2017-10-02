@@ -1,4 +1,5 @@
 import Request from 'superagent';
+import Q from 'q';
 
 /**
  * Esta função irá me retornar o números de contribuidores
@@ -18,21 +19,17 @@ function getUrlParameter(name, link) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
- 
+
 export default function counterContrib (next, last){
-    var numberOfContrib = [];
+    var deferred = Q.defer();
+    var result = [];
+    var numberOfContribs = 0;
     let numberOfLastPage = getUrlParameter('page', last); 
     let numberOfNextPage = getUrlParameter('page', next);
 
     for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
         const url = "https://api.github.com/repositories/70422915/contributors?page=" + i;
-        Request.get(url)
-            .then((data, error) => {
-                if(error){
-                    console.log(error);
-                } else {
-                    console.log(data);
-                }
-            })
+        console.log(url);
     }
+    return deferred.promise;
 }
