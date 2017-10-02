@@ -105,7 +105,7 @@ export default class Index extends Component {
 			case false:
 				return <Spinner name="cube-grid" className="spinner" />;
 			default:
-				return <Spinner name="cube-grid" className="spinner" />
+				return <Spinner name="cube-grid" className="spinner" />;
 		};
 	}
 

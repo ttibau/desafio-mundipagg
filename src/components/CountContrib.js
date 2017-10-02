@@ -5,11 +5,25 @@
  * @param {*} next = Próxima página de contribuidores
  * @param {*} last = Última página de contribuidores
  */
+
+
+ // Retorna o valor do parâmetro que eu passar
+ // Vai ser usada para retornar o número de páginas total (last)
+function getUrlParameter(name, link) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(link);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+ 
 export default function counterContrib (next, last){
-    var link = next.slice(0, -1);
-    console.log(link);
-    while(link === last){
-        console.log("1 consulta");
-        link += 1
+    let urlParams = new URLSearchParams(last);
+    let numberOfPages = getUrlParameter('page', last); 
+    console.log(numberOfPages);
+
+    for (var i = 1; i < numberOfPages; i++){
+        console.log("https://api.github.com/repositories/70422915/contributors?page=" + i.toString());
     }
+    
 }
