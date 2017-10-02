@@ -4,6 +4,7 @@ import logo from '../static/logo.png'
 import Request from 'superagent';
 import Spinner from 'react-spinkit';
 import Main from './Main';
+import counterContrib from './CountContrib';
 
 
 export default class Index extends Component {
@@ -25,7 +26,6 @@ export default class Index extends Component {
 		// Faz a req de todos os repositorios na inicializacao do componente 
 		const url = "https://api.github.com/users/ttibau/repos";
 		Request.get(url)
-			.set({ "Authorization" : "token 6d9f6425ac394bd14fb6feedd47af20517be72dc" })
 			.then((data, error) => {
 				// Seto a dataLoad pra true, para parar de exibir o Spinner
 				this.setState({ dataLoad: true });
@@ -53,12 +53,19 @@ export default class Index extends Component {
 						forksCount: data.body.forks_count, 
 						starsCount: data.body.stargazers_count 
 					});
+					// Após pegar os dados do repositório, vai na url de contribs e faz um count
+					// Se houver alguma prop dentro de links, fazer um get e jogar dentro do array de contrib
 					Request.get(data.body.contributors_url)
 						.then((data, error) => {
 							if(error) {
 								console.log("Houve um erro!");
 							} else {
 								console.log(data);
+								if("next" in data.links){
+									counterContrib(data.links.next, data.links.last);
+								} else {
+									console.log("não tem mais de 30");
+								}
 								this.setState({
 									contribCount: data.body.length
 								});
