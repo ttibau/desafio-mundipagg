@@ -21,11 +21,11 @@ function getUrlParameter(name, link) {
 
 
 export default function counterContrib (next, last, repoId){
-    let numberOfLastPage = getUrlParameter('page', last); 
-    let numberOfNextPage = getUrlParameter('page', next);
+    let numberOfLastPage = parseInt(getUrlParameter('page', last)); 
+    let numberOfNextPage = parseInt(getUrlParameter('page', next));
 
-    console.log("NextPage", numberOfNextPage) // 2
-    console.log("LastPage", numberOfLastPage) // 15
+    console.log("NextPage", typeof(numberOfNextPage)); // 2
+    console.log("LastPage", numberOfLastPage); // 15
 
     // ele não entra no for
     for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
