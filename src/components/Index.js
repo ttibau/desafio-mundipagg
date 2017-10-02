@@ -15,9 +15,9 @@ export default class Index extends Component {
 		this.state = { 
 			repos: [],
 			dataLoad: false,
-			forksCount: '',
-			starsCount: '',
-			contribCount: '',
+			forksCount: 0,
+			starsCount: 0,
+			contribCount: 0,
 			repoId: ''
 		};
 
@@ -26,7 +26,7 @@ export default class Index extends Component {
 
 	componentWillMount() {
 		// Faz a req de todos os repositorios na inicializacao do componente 
-		const url = "https://api.github.com/users/ttibau/repos";
+		const url = "https://api.github.com/users/mundipagg/repos";
 		Request.get(url)
 			.then((data, error) => {
 				// Seto a dataLoad pra true, para parar de exibir o Spinner
@@ -44,7 +44,7 @@ export default class Index extends Component {
 	handleChange(event) {
 		// Pega o valor selecionado no select e faz uma nova request nesse repositorio
 		console.log(event.target.value);
-		const url = "https://api.github.com/repos/ttibau/" + event.target.value;
+		const url = "https://api.github.com/repos/mundipagg/" + event.target.value;
 		Request.get(url)
 			.then((data, error) => {
 				if (error){
@@ -103,6 +103,7 @@ export default class Index extends Component {
 				return (
 					<div>
 						<select className="select-box" onChange={this.handleChange}>
+							<option>Selecione</option>
 							{repositories}
 						</select>
 
@@ -116,8 +117,6 @@ export default class Index extends Component {
 					</div>
 				);
 			case false:
-				return <Spinner name="cube-grid" className="spinner" />;
-			default:
 				return <Spinner name="cube-grid" className="spinner" />;
 		};
 	}

@@ -42,7 +42,7 @@ export default class DataChart extends Component {
 		const data = {
 			...this.state.chartData
 		}
-		data.datasets[0].data = this.props.data;	
+		data.datasets[0].data = this.props.data;	// Adiciono ao state, dentro de datasets.data o valor vindo da prop
 		this.setState({
 			chartData: data
 		})
