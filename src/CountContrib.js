@@ -26,7 +26,7 @@ export default function counterContrib (next, last, repoId){
     let result = [];
     let finalResult = [];
 
-    // ele não entra no for
+    
     for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
         var deferred = Q.defer();
         let url = "https://api.github.com/repositories/"+ repoId +"/contributors?page=" + i;
