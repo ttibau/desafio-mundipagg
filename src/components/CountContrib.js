@@ -1,3 +1,5 @@
+import Request from 'superagent';
+
 /**
  * Esta função irá me retornar o números de contribuidores
  * Pega o último e a próxima página. Remove o último caractere do next e vai incrementando até que o link seja
@@ -18,12 +20,19 @@ function getUrlParameter(name, link) {
 
  
 export default function counterContrib (next, last){
-    let urlParams = new URLSearchParams(last);
-    let numberOfPages = getUrlParameter('page', last); 
-    console.log(numberOfPages);
+    var numberOfContrib = [];
+    let numberOfLastPage = getUrlParameter('page', last); 
+    let numberOfNextPage = getUrlParameter('page', next);
 
-    for (var i = 1; i < numberOfPages; i++){
-        console.log("https://api.github.com/repositories/70422915/contributors?page=" + i.toString());
+    for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
+        const url = "https://api.github.com/repositories/70422915/contributors?page=" + i;
+        Request.get(url)
+            .then((data, error) => {
+                if(error){
+                    console.log(error);
+                } else {
+                    console.log(data);
+                }
+            })
     }
-    
 }
