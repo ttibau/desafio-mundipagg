@@ -24,7 +24,7 @@ export default function counterContrib (next, last, repoId){
     let numberOfLastPage = parseInt(getUrlParameter('page', last)); 
     let numberOfNextPage = parseInt(getUrlParameter('page', next));
     let result = [];
-    let finalResult = '';
+    let finalResult = [];
 
     // ele não entra no for
     for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
@@ -33,11 +33,9 @@ export default function counterContrib (next, last, repoId){
         Request.get(url)
             .then(data => {
                 result.push(data.body.length);
-                //console.log(result);
-                // se a url === las
+                // se a url === last, então o array está preenchido com todos os dados
                 if(url === last){
-                    console.log("Esse é o ponto final", result);
-                    var finalResult = result;
+                    finalResult = result;
                     deferred.resolve(finalResult);
                 }
             });

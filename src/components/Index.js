@@ -56,8 +56,12 @@ export default class Index extends Component {
 						forksCount: data.body.forks_count, 
 						starsCount: data.body.stargazers_count 
 					});
-					// Após pegar os dados do repositório, vai na url de chama a funcao counterContrib passando os links
-					// Se houver alguma prop dentro de links, a função vai retornar a quantidade total de contributors, depois soma no state
+					/* 
+					*	Faz um GET na url de contribuidores -> Verifica se há mais páginas de contribuidores -> Se houver, chama
+					* 	counterContrib que vai retornar a quantidades de contribuintes no total
+					* 	Função objVerified = Verifica se há a paginação em links
+					*	Função counterContrib = Retorna uma promisse com a quantidade de contribuidores
+					*/
 					Request.get(data.body.contributors_url)
 						.then((data, error) => {
 							if(error) {
@@ -70,7 +74,8 @@ export default class Index extends Component {
 								} else {
 									counterContrib(data.links.next, data.links.last, this.state.repoId)
 										.then(data => {
-											console.log(data);
+											const sumValues = obj => Object.values(data).reduce((a, b) => a + b);
+											this.setState({ contribCount: this.state.contribCount + sumValues() })
 										});
 									console.log("Contém mais de 30", data.links.next, data.links.last);
 								}
