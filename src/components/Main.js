@@ -10,7 +10,7 @@ export default class Main extends Component {
 
 				<InfoBox  valorPrincipal={this.props.forksValue} label={"Forks"}/>
 				<InfoBox valorPrincipal={this.props.starsValue} label={"Stars"} />
-				<InfoBox valorPrincipal={this.props.contribValue} label={"Contribuitors"} />
+				<InfoBox valorPrincipal={this.props.contribValue} label={"Contributors"} />
 			</div>
 		);
 	}

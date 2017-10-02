@@ -20,16 +20,16 @@ function getUrlParameter(name, link) {
 };
 
 
-export default function counterContrib (next, last){
-    var deferred = Q.defer();
-    var result = [];
-    var numberOfContribs = 0;
+export default function counterContrib (next, last, repoId){
     let numberOfLastPage = getUrlParameter('page', last); 
     let numberOfNextPage = getUrlParameter('page', next);
 
+    console.log("NextPage", numberOfNextPage) // 2
+    console.log("LastPage", numberOfLastPage) // 15
+
+    // ele não entra no for
     for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
-        const url = "https://api.github.com/repositories/70422915/contributors?page=" + i;
-        console.log(url);
+        console.log(i);
     }
-    return deferred.promise;
+
 }

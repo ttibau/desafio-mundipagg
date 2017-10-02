@@ -17,7 +17,8 @@ export default class Index extends Component {
 			dataLoad: false,
 			forksCount: '',
 			starsCount: '',
-			contribCount: ''
+			contribCount: '',
+			repoId: ''
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -51,6 +52,7 @@ export default class Index extends Component {
 				} else {
 					console.log(data.body)
 					this.setState({ 
+						repoId: data.body.id,
 						forksCount: data.body.forks_count, 
 						starsCount: data.body.stargazers_count 
 					});
@@ -61,11 +63,13 @@ export default class Index extends Component {
 							if(error) {
 								console.log("Houve um erro!");
 							} else {
+								console.log(data);
 								let objVerified = isEmptyObject(data.links);
 								if(objVerified){
-									console.log("Não contém nada");
+									console.log("Não contém mais de 30");
 								} else {
-									console.log("contém sim");
+									counterContrib(data.links.next, data.links.last, this.state.repoId);
+									console.log("Contém mais de 30", data.links.next, data.links.last);
 								}
 								this.setState({
 									contribCount: data.body.length
