@@ -68,7 +68,10 @@ export default class Index extends Component {
 								if(objVerified){
 									console.log("Não contém mais de 30");
 								} else {
-									counterContrib(data.links.next, data.links.last, this.state.repoId);
+									counterContrib(data.links.next, data.links.last, this.state.repoId)
+										.then(data => {
+											console.log(data);
+										});
 									console.log("Contém mais de 30", data.links.next, data.links.last);
 								}
 								this.setState({

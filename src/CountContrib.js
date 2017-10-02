@@ -23,13 +23,24 @@ function getUrlParameter(name, link) {
 export default function counterContrib (next, last, repoId){
     let numberOfLastPage = parseInt(getUrlParameter('page', last)); 
     let numberOfNextPage = parseInt(getUrlParameter('page', next));
-
-    console.log("NextPage", typeof(numberOfNextPage)); // 2
-    console.log("LastPage", numberOfLastPage); // 15
+    let result = [];
+    let finalResult = '';
 
     // ele não entra no for
     for (let i = numberOfNextPage; i <= numberOfLastPage; i++){
-        console.log(i);
+        var deferred = Q.defer();
+        let url = "https://api.github.com/repositories/"+ repoId +"/contributors?page=" + i;
+        Request.get(url)
+            .then(data => {
+                result.push(data.body.length);
+                //console.log(result);
+                // se a url === las
+                if(url === last){
+                    console.log("Esse é o ponto final", result);
+                    var finalResult = result;
+                    deferred.resolve(finalResult);
+                }
+            });
     }
-
+    return deferred.promise;
 }
