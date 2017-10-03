@@ -6,6 +6,7 @@ import Spinner from 'react-spinkit';
 import Main from './Main';
 import counterContrib from '../CountContrib';
 import isEmptyObject from '../verifyObject';
+import counterCommit from '../countCommit';
 
 
 export default class Index extends Component {
@@ -50,12 +51,15 @@ export default class Index extends Component {
 				if (error){
 					console.log("Houve Erro!");
 				} else {
-					console.log(data.body)
+					//console.log(data.body)
 					this.setState({ 
 						repoId: data.body.id,
 						forksCount: data.body.forks_count, 
 						starsCount: data.body.stargazers_count 
 					});
+
+					counterCommit(data.body.commits_url, data.body.id);
+					
 					/* 
 					*	Faz um GET na url de contribuidores -> Verifica se há mais páginas de contribuidores -> Se houver, chama
 					* 	counterContrib que vai retornar a quantidades de contribuintes no total
@@ -67,17 +71,13 @@ export default class Index extends Component {
 							if(error) {
 								console.log("Houve um erro!");
 							} else {
-								console.log(data);
 								let objVerified = isEmptyObject(data.links);
-								if(objVerified){
-									console.log("Não contém mais de 30");
-								} else {
+								if(!objVerified){
 									counterContrib(data.links.next, data.links.last, this.state.repoId)
 										.then(data => {
 											const sumValues = obj => Object.values(data).reduce((a, b) => a + b);
 											this.setState({ contribCount: this.state.contribCount + sumValues() })
 										});
-									console.log("Contém mais de 30", data.links.next, data.links.last);
 								}
 								this.setState({
 									contribCount: data.body.length

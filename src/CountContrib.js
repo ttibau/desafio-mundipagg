@@ -12,6 +12,7 @@ import Q from 'q';
 
  // Retorna o valor do parâmetro que eu passar
  // Vai ser usada para retornar o número de páginas total (last)
+ // Retorna page={x}
 function getUrlParameter(name, link) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
