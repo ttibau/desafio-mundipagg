@@ -22,8 +22,8 @@ function getUrlParameter(name, link) {
 
 
 export default function counterContrib (next, last, repoId){
-    let numberOfLastPage = parseInt(getUrlParameter('page', last)); 
-    let numberOfNextPage = parseInt(getUrlParameter('page', next));
+    let numberOfLastPage = parseInt(getUrlParameter('page', last), 0); 
+    let numberOfNextPage = parseInt(getUrlParameter('page', next), 0);
     let result = [];
     let finalResult = [];
 
