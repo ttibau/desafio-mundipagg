@@ -136,7 +136,7 @@ export default class Index extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="body">
 				<div className="header">
 					<img src={logo} className="app-logo" alt="Logo" />
 					<h2> Desafio Mundipagg - Tibau</h2>
