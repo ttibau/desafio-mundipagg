@@ -19,7 +19,9 @@ export default class Index extends Component {
 			forksCount: 0,
 			starsCount: 0,
 			contribCount: 0,
-			repoId: ''
+			repoId: '',
+			chartLabel: [],
+			chartData: []
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -62,7 +64,10 @@ export default class Index extends Component {
 
 					counterCommit(data.body.commits_url)
 						.then(data => {
-							console.log(data);
+							this.setState({
+								chartLabel: Object.keys(data),
+								chartData: Object.values(data)
+							})
 						});
 					
 					/* 
@@ -115,7 +120,8 @@ export default class Index extends Component {
 
 						{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
 						<Main 
-							dataChart={ [65, 59, 80, 81, 56, 55, 40] }
+							dataChart={this.state.chartData}
+							labelChart = {this.state.chartLabel}
 							forksValue={this.state.forksCount}
 							starsValue={this.state.starsCount}
 							contribValue={this.state.contribCount}

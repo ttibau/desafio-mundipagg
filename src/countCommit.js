@@ -1,17 +1,5 @@
 import Request from 'superagent';
-import isEmptyObject from './verifyObject';
 import Q from 'q';
-
- // Retorna o valor do parâmetro que eu passar
- // Vai ser usada para retornar o número de páginas total (last)
- // Retorna page={x}
- function getUrlParameter(name, link) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(link);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
-
 
 /**
  * 
@@ -21,7 +9,6 @@ import Q from 'q';
  */
 export default function counterCommit(commitUrl) {
     const deferred = Q.defer();
-    const numberOfCommits = [];
     let n = commitUrl.indexOf('{');
     const url = commitUrl.substring(0, n !== -1 ? n : commitUrl.length);
     Request.get(url + "?per_page=100")
@@ -30,9 +17,33 @@ export default function counterCommit(commitUrl) {
             if(error) {
                 console.log("Deu erro");
             } else {
-                deferred.resolve(data.body);
+                mappingCommits(data.body)
+                    .then(commits => {
+                        deferred.resolve(commits);
+                    });
             }
         })
     return deferred.promise;
 };  
+
+
+// Retorna um Object contendo Data: quantidade
+function mappingCommits(array){
+    const deferred = Q.defer();
+    let labels = [];
+    for (let i = 0; i < array.length; i++){
+        let date = new Date (array[i].commit.committer.date).toLocaleDateString();
+        if (!(date in labels)) {
+            labels[date] = 0;
+          }
+          
+          labels[date] += 1;
+
+          if(i === array.length -1){
+            //console.log(labels);
+            deferred.resolve(labels);
+          }
+    }
+    return deferred.promise;
+};
 

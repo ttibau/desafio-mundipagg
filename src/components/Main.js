@@ -6,7 +6,7 @@ export default class Main extends Component {
 	render() {
 		return (
 			<div>
-				<DataChart  data={ this.props.dataChart }/>
+				<DataChart  data={ this.props.dataChart } label={this.props.labelChart} />
 
 				<InfoBox  valorPrincipal={this.props.forksValue} label={"Forks"}/>
 				<InfoBox valorPrincipal={this.props.starsValue} label={"Stars"} />

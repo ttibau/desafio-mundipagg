@@ -9,7 +9,7 @@ export default class DataChart extends Component {
 	state = {
 		chartData: {
 		
-			labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+			labels: [],
 			datasets: [
 		    {
 		      label: 'Commits',
@@ -36,23 +36,26 @@ export default class DataChart extends Component {
 		}
 	}
 
-	componentWillMount() {
-
+	componentWillReceiveProps(props){
+		console.log(props.data);
 		// Os dados que serao passados pro state virao da propriedade data que vem no index
 		const data = {
 			...this.state.chartData
 		}
-		data.datasets[0].data = this.props.data;	// Adiciono ao state, dentro de datasets.data o valor vindo da prop
+		data.datasets[0].data = props.data;	// Adiciono ao state, dentro de datasets.data o valor vindo da prop
+		data.labels = props.label;
 		this.setState({
 			chartData: data
 		})
+		console.log(this.state);
+
 	}
 
 	render() {
 		return (
 			<Grid fluid>
 				<Row>
-					<Line data={this.state.chartData} />
+					<Line data={this.state.chartData}/>
 				</Row>
 			</Grid>
 		);
