@@ -32,6 +32,7 @@ export default function counterContrib (next, last, repoId){
         var deferred = Q.defer();
         let url = "https://api.github.com/repositories/"+ repoId +"/contributors?page=" + i;
         Request.get(url)
+        .set("Authorization", "Basic " + btoa("ttibau:tibaus7212"))
             .then(data => {
                 result.push(data.body.length);
                 // se a url === last, então o array está preenchido com todos os dados

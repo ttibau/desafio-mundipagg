@@ -29,6 +29,7 @@ export default class Index extends Component {
 		// Faz a req de todos os repositorios na inicializacao do componente 
 		const url = "https://api.github.com/users/mundipagg/repos";
 		Request.get(url)
+		.set("Authorization", "Basic " + btoa("ttibau:tibaus7212"))
 			.then((data, error) => {
 				// Seto a dataLoad pra true, para parar de exibir o Spinner
 				this.setState({ dataLoad: true });
@@ -47,6 +48,7 @@ export default class Index extends Component {
 		console.log(event.target.value);
 		const url = "https://api.github.com/repos/mundipagg/" + event.target.value;
 		Request.get(url)
+		.set("Authorization", "Basic " + btoa("ttibau:tibaus7212"))
 			.then((data, error) => {
 				if (error){
 					console.log("Houve Erro!");
@@ -58,7 +60,10 @@ export default class Index extends Component {
 						starsCount: data.body.stargazers_count 
 					});
 
-					counterCommit(data.body.commits_url, data.body.id);
+					counterCommit(data.body.commits_url)
+						.then(data => {
+							console.log(data);
+						});
 					
 					/* 
 					*	Faz um GET na url de contribuidores -> Verifica se há mais páginas de contribuidores -> Se houver, chama
@@ -67,6 +72,7 @@ export default class Index extends Component {
 					*	Função counterContrib = Retorna uma promisse com a quantidade de contribuidores
 					*/
 					Request.get(data.body.contributors_url)
+					.set("Authorization", "Basic " + btoa("ttibau:tibaus7212"))
 						.then((data, error) => {
 							if(error) {
 								console.log("Houve um erro!");
