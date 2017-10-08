@@ -1,0 +1,17 @@
+.info-box {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #FFFFFF
+}
+
+.info-box .box {
+    background-color: #082659;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+
+.info-box i {
+    color: #ef4043;
+}

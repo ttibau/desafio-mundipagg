@@ -4,13 +4,15 @@
   "private": true,
   "dependencies": {
     "chart.js": "2.7.0",
-    "lodash": "^4.17.4",
+    "jest": "^21.2.1",
     "q": "^1.5.0",
     "react": "^16.0.0",
     "react-chartjs": "^0.8.0",
     "react-chartjs-2": "^2.6.2",
     "react-dom": "^16.0.0",
     "react-flexbox-grid": "^1.1.5",
+    "react-grid-system": "^2.9.6",
+    "react-icons": "^2.2.7",
     "react-scripts": "1.0.14",
     "react-spinkit": "^3.0.0",
     "superagent": "^3.6.1"
@@ -18,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   }
 }

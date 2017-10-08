@@ -33,11 +33,11 @@ function mappingCommits(array){
     let labels = [];
     for (let i = 0; i < array.length; i++){
         let date = new Date (array[i].commit.committer.date).toLocaleDateString();
-        if (!(date in labels)) {
-            labels[date] = 0;
+        if (!(date in labels)) { // Se Não houver date em labels
+            labels[date] = 0; // labels 20/09/2015 = 0
           }
           
-          labels[date] += 1;
+          labels[date] += 1; // 20/09/2015 += 1
 
           if(i === array.length -1){
             //console.log(labels);

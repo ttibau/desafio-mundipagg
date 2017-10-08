@@ -7,7 +7,8 @@ import Main from './Main';
 import counterContrib from '../CountContrib';
 import isEmptyObject from '../verifyObject';
 import counterCommit from '../countCommit';
-
+import { Row, Col} from 'react-grid-system';
+import '../style/flexboxgrid.css';
 
 export default class Index extends Component {
 
@@ -90,6 +91,7 @@ export default class Index extends Component {
 											this.setState({ contribCount: this.state.contribCount + sumValues() })
 										});
 								}
+								console.log(typeof(data));
 								this.setState({
 									contribCount: data.body.length
 								});
@@ -113,12 +115,17 @@ export default class Index extends Component {
 			case true:
 				return (
 					<div>
-						<select className="select-box" onChange={this.handleChange}>
-							<option>Selecione</option>
-							{repositories}
-						</select>
-
+						<div className="row">
+							<div className="col-md-6">	
+								<select className="select-box" onChange={this.handleChange}>
+									<option>Selecione</option>
+									{repositories}
+								</select>
+							</div>
+						</div>
+							
 						{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
+						<div className="row">
 						<Main 
 							dataChart={this.state.chartData}
 							labelChart = {this.state.chartLabel}
@@ -126,6 +133,7 @@ export default class Index extends Component {
 							starsValue={this.state.starsCount}
 							contribValue={this.state.contribCount}
 						 />	
+						</div>
 					</div>
 				);
 			case false:
@@ -137,6 +145,7 @@ export default class Index extends Component {
 	render() {
 		return (
 			<div className="body">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<div className="header">
 					<img src={logo} className="app-logo" alt="Logo" />
 					<h2> Desafio Mundipagg - Tibau</h2>
