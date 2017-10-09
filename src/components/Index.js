@@ -115,17 +115,13 @@ export default class Index extends Component {
 			case true:
 				return (
 					<div>
-						<div className="row">
-							<div className="col-md-6">	
-								<select className="select-box" onChange={this.handleChange}>
-									<option>Selecione</option>
-									{repositories}
-								</select>
-							</div>
-						</div>
-							
+						<div>	
+							<select className="col-sm-4 col-xs-8 select-box" onChange={this.handleChange}>
+								<option>Selecione</option>
+								{repositories}
+							</select>
+						</div>							
 						{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
-						<div className="row">
 						<Main 
 							dataChart={this.state.chartData}
 							labelChart = {this.state.chartLabel}
@@ -133,7 +129,6 @@ export default class Index extends Component {
 							starsValue={this.state.starsCount}
 							contribValue={this.state.contribCount}
 						 />	
-						</div>
 					</div>
 				);
 			case false:

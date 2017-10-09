@@ -1,17 +1,26 @@
-.info-box {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #FFFFFF
+.boxes {
+    float: left;
 }
 
-.info-box .box {
+.chart {
+    float: right;
+    width: 70% !important;
+    height: 70% !important;
+}
+.chart-box {
+    width: 40%;
+    float: right;
+}
+
+.box {
     background-color: #082659;
-    padding-left: 5px;
-    padding-right: 5px;
-
-}
-
-.info-box i {
-    color: #ef4043;
+	width: 150px;
+	border: 2px solid #000;
+	margin: 0 40% 15px;
+	text-align: center;
+	padding: 20px;
+	font-weight: bold;
+	border-radius: 10px;
+    margin-top: 5px;	
+    color: #fff;
 }

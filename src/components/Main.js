@@ -11,31 +11,20 @@ export default class Main extends Component {
 		return (
 			<div>
 				<div className="row">
-					<div className="col-xs-4">
-						<InfoBox valorPrincipal={this.props.starsValue} label={"Stars"} icon={<FaStar />} />
-					</div>
-					<div className="col-xs-4">
-						<InfoBox valorPrincipal={this.props.forksValue} label={"Forks"} icon={<FaCodeFork />}/>
-					</div>
-					<div className="col-xs-4">
-						<InfoBox valorPrincipal={this.props.contribValue} label={"Contributors"} icon={<FaUserPlus />} />
-					</div>
-				</div>
-
-				<div className="row">
-					<div className="col-xs">
-						<div className="box">
-							<div className="row">
-								<div className="col-xs">
-									<div className="box">auto</div>
-								</div>
-							</div>
+					<div className="boxes">
+						<div className="col-sm-4 col-xs-8">
+							<InfoBox valorPrincipal={this.props.starsValue} label={"Stars"} icon={<FaStar />} />
+						</div>
+						<div className="col-sm-4 col-xs-8">
+							<InfoBox valorPrincipal={this.props.forksValue} label={"Forks"} icon={<FaCodeFork />}/>
+						</div>
+						<div className="col-sm-4 col-xs-8">
+							<InfoBox valorPrincipal={this.props.contribValue} label={"Contributors"} icon={<FaUserPlus />} />
 						</div>
 					</div>
-				</div>
-
-				<div className="row">
-					<DataChart  data={ this.props.dataChart } label={this.props.labelChart} />
+					<div className="chart-box">
+						<DataChart className="col-sm-6 col-xs-8 chart" data={ this.props.dataChart } label={this.props.labelChart} />
+					</div>
 				</div>
 			</div>
 		);
