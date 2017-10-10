@@ -10,7 +10,8 @@ export default class Main extends Component {
 	render() {
 		return (
 			<div>
-				<div className="row">
+				{/* PRECISO QUE QUANDO A TELA ESTEJA EM TAL RESPONSIVIDADE, O CHART PASSE A NÃO SER MAIS NA MESMA ROW QUE AS INFO BOXES */}
+				<div className="row content">
 					<div className="boxes">
 						<div className="col-sm-4 col-xs-8">
 							<InfoBox valorPrincipal={this.props.starsValue} label={"Stars"} icon={<FaStar />} />
@@ -23,7 +24,7 @@ export default class Main extends Component {
 						</div>
 					</div>
 					<div className="chart-box">
-						<DataChart className="col-sm-6 col-xs-8 chart" data={ this.props.dataChart } label={this.props.labelChart} />
+						<DataChart className="col-sm-8 col-xs-8 chart" data={ this.props.dataChart } label={this.props.labelChart} />
 					</div>
 				</div>
 			</div>

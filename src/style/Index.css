@@ -29,8 +29,14 @@
 }
 
 .select-box {
-    margin-top: 10%;
-    transform: translate(-50%, -50%);
-    margin-left: 45%;
+    margin-top: 20px;
+    margin-left: 38px;
+    width: 150px;
 }
 
+@media only screen and (max-width: 959px) {
+    .footer {
+        font-size: 0.9em;
+        text-align: left !important;
+    }
+} 

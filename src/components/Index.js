@@ -7,7 +7,7 @@ import Main from './Main';
 import counterContrib from '../CountContrib';
 import isEmptyObject from '../verifyObject';
 import counterCommit from '../countCommit';
-import { Row, Col} from 'react-grid-system';
+import Footer from './Footer';
 import '../style/flexboxgrid.css';
 
 export default class Index extends Component {
@@ -115,12 +115,11 @@ export default class Index extends Component {
 			case true:
 				return (
 					<div>
-						<div>	
-							<select className="col-sm-4 col-xs-8 select-box" onChange={this.handleChange}>
-								<option>Selecione</option>
-								{repositories}
-							</select>
-						</div>							
+						<select className="col-sm-4 col-xs-8 select-box" onChange={this.handleChange}>
+							<option>Selecione</option>
+							{repositories}
+						</select>
+					
 						{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
 						<Main 
 							dataChart={this.state.chartData}
@@ -141,11 +140,12 @@ export default class Index extends Component {
 		return (
 			<div className="body">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<div className="header">
+				<header className="header">
 					<img src={logo} className="app-logo" alt="Logo" />
 					<h2> Desafio Mundipagg - Tibau</h2>
-				</div>
+				</header>
 				{this.renderContent()}
+				<Footer />
 			</div>
 		);
 	}
