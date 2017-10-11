@@ -1,18 +1,23 @@
 import React from 'react';
-import expect from 'expect';
-import Index  from '../components/Index';
-import { shallow } from 'enzyme';
+import { expect } from 'chai';
+import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() });
+import Index  from '../components/Index';
+import Main from '../components/Main';
 
-describe('Componente: Index', () => {
+configure({ adapter: new Adapter()});
+
+describe('Componente: <Index />', () => {
 
     it('Renderizando Main dentro do Index', () => {
         const wrapper = shallow(<Index />);
-        expect(wrapper.find(Main)).to.have.length(1);
+        expect(wrapper.find(Main)).to.have.length(0);
     });
 
-    it('Renderizando o DataChart');
+    it('Main accept props', () => {
+        const wrapper = mount(<Main  starsValue="12" />);
+        expect(wrapper.props().starsValue).to.equal('12');
+    });
 
 })
