@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DataChart  from './DataChart';
 import InfoBox from './InfoBox';
 import '../style/InfoBox.css';
 import {FaStar, FaCodeFork, FaUserPlus} from 'react-icons/lib/fa';
