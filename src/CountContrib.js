@@ -1,5 +1,6 @@
 import Request from 'superagent';
 import Q from 'q';
+import token from './token'
 
 /**
  * Esta função irá me retornar o números de contribuidores
@@ -31,7 +32,7 @@ export default function counterContrib (next, last, repoId){
         var deferred = Q.defer();
         let url = "https://api.github.com/repositories/"+ repoId +"/contributors?page=" + i;
         Request.get(url)
-        .set("Authorization", "Basic " + btoa("ttibau:tibaus7212"))
+        .set(token())
             .then(data => {
                 result.push(data.body.length);
                 // se a url === last, então o array está preenchido com todos os dados

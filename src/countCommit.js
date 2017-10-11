@@ -1,5 +1,6 @@
 import Request from 'superagent';
 import Q from 'q';
+import token from './token'
 
 /**
  * 
@@ -12,7 +13,7 @@ export default function counterCommit(commitUrl) {
     let n = commitUrl.indexOf('{');
     const url = commitUrl.substring(0, n !== -1 ? n : commitUrl.length);
     Request.get(url + "?per_page=100")
-    .set("Authorization", "Basic " + btoa("ttibau:tibaus7212"))
+    .set(token())
         .then((data, error) => {
             if(error) {
                 console.log("Deu erro");
