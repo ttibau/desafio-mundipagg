@@ -1,5 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Exo+2:400,300,300italic,400italic,700,700italic);
 
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+p, i, h1, h2, h3, h4 {
+    margin: 4px;
+    padding: 0;
+}
+
 .header {
     
 	background-color: #3498db;
@@ -8,7 +19,17 @@
 	color: white;
 }
 
-.body {
+html, body, .body {
+    height: 100%;
+    min-height: 100%;
+}
+
+#root {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
     font-family: 'Exo 2', sans-serif;
 }
 
@@ -29,14 +50,12 @@
 }
 
 .select-box {
-    margin-top: 20px;
-    margin-left: 38px;
-    width: 150px;
+    width: 100%;
+    padding: 6px;
 }
 
 @media only screen and (max-width: 959px) {
-    .footer {
-        font-size: 0.9em;
-        text-align: left !important;
+    .header h2 {
+        margin-bottom: 30px;
     }
 } 

@@ -9,6 +9,7 @@ import isEmptyObject from '../verifyObject';
 import counterCommit from '../countCommit';
 import Footer from './Footer';
 import '../style/flexboxgrid.css';
+import DataChart from './DataChart';
 
 export default class Index extends Component {
 
@@ -114,20 +115,23 @@ export default class Index extends Component {
 		switch(this.state.dataLoad){
 			case true:
 				return (
-					<div>
-						<select className="col-sm-4 col-xs-8 select-box" onChange={this.handleChange}>
-							<option>Selecione</option>
-							{repositories}
-						</select>
-					
-						{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
-						<Main 
-							dataChart={this.state.chartData}
-							labelChart = {this.state.chartLabel}
-							forksValue={this.state.forksCount}
-							starsValue={this.state.starsCount}
-							contribValue={this.state.contribCount}
-						 />	
+					<div className="content row center-xs">
+						<div className="col-xs-10 col-sm-3">
+							<select className="select-box" onChange={this.handleChange}>
+								<option>Selecione</option>
+								{repositories}
+							</select>
+						
+							{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
+							<Main 
+								forksValue={this.state.forksCount}
+								starsValue={this.state.starsCount}
+								contribValue={this.state.contribCount}
+							/>	
+						</div>
+						<div className="col-xs-10 col-sm-9">
+							<DataChart className="" data={ this.state.chartData } label={this.state.chartLabel} />
+						</div>
 					</div>
 				);
 			case false:

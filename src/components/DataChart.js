@@ -49,6 +49,6 @@ export default class DataChart extends Component {
 	}
 
 	render() {
-		return <Line data={this.state.chartData} options={{maintainAspectRatio: false}} />
+		return <Line data={this.state.chartData} />
 	}
 }

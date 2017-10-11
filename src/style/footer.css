@@ -1,11 +1,9 @@
 .footer {
+    position: relative;
     background-color: #3498db;
 	color: #fff;
-	padding: 5% 5%;
-	margin-top: 7px;
+	padding: 10px 10px;
+	margin-top: -3px;
     text-align: center;
-    position: fixed;
-    left:0px;
-    bottom:0px;
     width: 100%;
 }
