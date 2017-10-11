@@ -1,24 +1,9 @@
-.boxes {
-    float: left;
-    margin-right: 3%;
-}
-
-.chart {
-    float: right;
-    width: 70% !important;
-    height: 70% !important;
-}
-
-.chart-box {
-    float: right;
-    width: 80% !important;
-}
 
 .content {
     margin-right: 0 !important;
     padding: 20px;
     height: 100%;
-    min-height: 100%;
+    min-height: 100%; 
 }
 
 .box {
@@ -26,23 +11,9 @@
     color: #fff;
     width: 100%;
     height: 100px;
-    border: 2px solid #000;
+    border: 2px solid #b62b5f;
     border-radius: 10px;
     font-weight: bold;
     margin-top: 10px;
     padding: 10px 0px;
-}
-
-.box-old {
-    background-color: #082659;
-    width: 150px;
-    height: 100px;
-	border: 2px solid #000;
-	margin: 0 40% 15px;
-	text-align: center;
-	padding: 20px;
-	font-weight: bold;
-	border-radius: 10px;
-    margin-top: 5px;	
-    color: #fff;
 }

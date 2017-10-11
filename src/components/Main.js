@@ -9,7 +9,7 @@ import '../style/flexboxgrid.css';
 export default class Main extends Component {
 	render() {
 		return (
-			<div className="">	
+			<div>	
 				<InfoBox valorPrincipal={this.props.starsValue} label={"Stars"} icon={<FaStar />} />
 				<InfoBox valorPrincipal={this.props.forksValue} label={"Forks"} icon={<FaCodeFork />}/>
 				<InfoBox valorPrincipal={this.props.contribValue} label={"Contributors"} icon={<FaUserPlus />} />
