@@ -49,8 +49,6 @@ export default class Index extends Component {
 
 
 	handleChange(event) {
-		// Pega o valor selecionado no select e faz uma nova request nesse repositorio
-		console.log(event.target.value);
 		const url = "https://api.github.com/repos/mundipagg/" + event.target.value;
 		Request.get(url)
 		.set(token())
@@ -58,13 +56,13 @@ export default class Index extends Component {
 				if (error){
 					console.log("Houve Erro!");
 				} else {
-					//console.log(data.body)
 					this.setState({ 
 						repoId: data.body.id,
 						forksCount: data.body.forks_count, 
 						starsCount: data.body.stargazers_count 
 					});
 
+					/* Retorna os últimos 100 commits */
 					counterCommit(data.body.commits_url)
 						.then(data => {
 							this.setState({
@@ -74,7 +72,7 @@ export default class Index extends Component {
 						});
 					
 					/* 
-					*	Faz um GET na url de contribuidores -> Verifica se há mais páginas de contribuidores -> Se houver, chama
+					*	Pega a URL de contributors_url e envia para a função *counterContrib() 
 					* 	counterContrib que vai retornar a quantidades de contribuintes no total
 					* 	Função objVerified = Verifica se há a paginação em links
 					*	Função counterContrib = Retorna uma promisse com a quantidade de contribuidores
@@ -113,31 +111,31 @@ export default class Index extends Component {
 			);
 		});
 		
-		switch(this.state.dataLoad){
-			case true:
-				return (
-					<div className="content row center-xs">
-						<div className="col-xs-10 col-sm-3">
-							<select className="select-box" onChange={this.handleChange}>
-								<option>Selecione</option>
-								{repositories}
-							</select>
-						
-							{/* O componente Main ira exibir os dados no Chart e as boxes com as informacoes de forks, stars, etc */}
-							<Main 
-								forksValue={this.state.forksCount}
-								starsValue={this.state.starsCount}
-								contribValue={this.state.contribCount}
-							/>	
-						</div>
-						<div className="col-xs-10 col-sm-9">
-							<DataChart className="" data={ this.state.chartData } label={this.state.chartLabel} />
-						</div>
-					</div>
-				);
-			case false:
-				return <Spinner name="cube-grid" className="spinner" />;
-		};
+		while(!this.state.dataLoad){
+			return <Spinner name="cube-grid" className="spinner" />;
+		}
+		return (
+			<div className="content row center-xs">
+				<div className="col-xs-10 col-sm-3">
+					<select className="select-box" onChange={this.handleChange}>
+						<option>Selecione</option>
+						{repositories}
+					</select>
+				
+					{/* O <Main /> vai conter as informações que serão passadas para as Boxes*/}
+					<Main 
+						forksValue={this.state.forksCount}
+						starsValue={this.state.starsCount}
+						contribValue={this.state.contribCount}
+					/>	
+				</div>
+				<div className="col-xs-10 col-sm-9">
+					{/* O <DataChart /> vai conter os dados que serão passados para o ChartJs*/}
+					<DataChart data={ this.state.chartData } label={this.state.chartLabel} />
+				</div>
+			</div>
+		);
+			
 	}
 
 

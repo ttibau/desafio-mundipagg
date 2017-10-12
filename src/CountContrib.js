@@ -8,6 +8,7 @@ import token from './token'
  * igual ao last, e vai atribuindo os resultados dentro do array com spread, no final, retornar o valor do length do array
  * @param {*} next = Próxima página de contribuidores
  * @param {*} last = Última página de contribuidores
+ * @param {*} repoId = ID do repositório
  */
 
 
